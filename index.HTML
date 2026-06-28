@@ -1,87 +1,207 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
+
 <meta charset="UTF-8">
-<title>Mon premier projet</title>
+<title>Online ChatBot</title>
 
 <style>
-body{
-    margin:0;
-    height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    background:#D40000;
-    font-family:Arial, Rubik Glitch, sans-serif;
-}
-.card{
-    background:#C7C7C7;
-    padding:40px;
-    border-radius:20px;
-    text-align:center;
-    color:white;
-    width:400px;
-    box-shadow:0 15px 40px rgba(255, 0, 0, 1);
-}
 
-h1{
-    margin-top:0;
-}
+/* BODY */
 
-#nombre{
-    font-size:60px;
-    margin:25px 0;
-    color:#111111;
-}
+/*
+background:
+color:
+font-family:
+margin:
+padding:
+*/
 
-button{
-    padding:15px 35px;
-    border:none;
-    border-radius:12px;
-    cursor:pointer;
-    font-size:18px;
-    background:#111111;
-    color:white;
-    transition:.10s;
-}
 
-button:hover{
-    transform:scale(1.08);
-}
+/* TITRES */
+
+/*
+font-size:
+text-align:
+*/
+
+
+/* BOUTONS */
+
+/*
+background:
+color:
+border:
+padding:
+cursor:
+border-radius:
+*/
+
+
+/* INPUT */
+
+/*
+width:
+padding:
+*/
+
+
+/* CHATBOT */
+
+/*
+width:
+height:
+position:
+*/
 
 </style>
 
 </head>
-<body>
 
-<div class="card">
+<body>
 
 <h1>Online ChatBot</h1>
 
-<div id="nombre">0</div>
+<p>Bienvenue sur mon premier chatbot.</p>
 
 <button onclick="ouvrirChatbot()">
-open chabot
+Open ChatBot
+</button>
+
+<br><br>
+
+<div id="chatbot" hidden>
+
+<h2>ChatBot</h2>
+
+<div id="messages"></div>
+
+<input
+id="question"
+type="text"
+placeholder="Écris un message">
+
+<button onclick="envoyerMessage()">
+Envoyer
+</button>
+
+<button onclick="fermerChatbot()">
+Fermer
 </button>
 
 </div>
 
 <script>
 
-let compteur = 0;
+// ======================
+// VARIABLES
+// ======================
 
-function ajouter(){
-
-    compteur++;
-alert("Bonjour !") 
 let prenom = "Noé";
+let nom = "Vouillamoz";
+let age = 14;
+let ville = "Sion";
+let entreprise = "Alpinia Web Craft";
 
 
-    document.getElementById("nombre").innerText = compteur;
+// ======================
+// OUVRIR LE CHATBOT
+// ======================
+
+function ouvrirChatbot(){
+
+    document.getElementById("chatbot").hidden = false;
+
+}
+
+
+// ======================
+// FERMER LE CHATBOT
+// ======================
+
+function fermerChatbot(){
+
+    document.getElementById("chatbot").hidden = true;
+
+}
+
+
+// ======================
+// ENVOYER UN MESSAGE
+// ======================
+
+function envoyerMessage(){
+
+    let input = document.getElementById("question");
+
+    let message = input.value.toLowerCase();
+
+    let messages = document.getElementById("messages");
+
+    let reponse = "Je ne comprends pas encore cette question.";
+
+
+
+    if(message.includes("bonjour")){
+
+        reponse = "Bonjour !";
+
+    }
+
+
+    if(message.includes("prénom") || message.includes("prenom")){
+
+        reponse = "Je m'appelle " + prenom + ".";
+
+    }
+
+
+    if(message.includes("nom")){
+
+        reponse = "Mon nom est " + nom + ".";
+
+    }
+
+
+    if(message.includes("age") || message.includes("âge")){
+
+        reponse = "J'ai " + age + " ans.";
+
+    }
+
+
+    if(message.includes("ville")){
+
+        reponse = "J'habite à " + ville + ".";
+
+    }
+
+
+    if(message.includes("entreprise")){
+
+        reponse = "Je travaille pour " + entreprise + ".";
+
+    }
+
+
+    if(message.includes("salut")){
+
+        reponse = "Salut 👋";
+
+    }
+
+
+    messages.innerHTML += "<p><b>Toi :</b> " + input.value + "</p>";
+
+    messages.innerHTML += "<p><b>Bot :</b> " + reponse + "</p>";
+
+    input.value = "";
 
 }
 
 </script>
 
 </body>
+
 </html>
